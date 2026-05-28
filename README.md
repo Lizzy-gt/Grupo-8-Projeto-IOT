@@ -1,4 +1,5 @@
-# Grupo-8-Projeto-IOT
+<span style="color: #453c5c;">Grupo-8-Projeto-IOT</span>
+
 O projeto "(Vamos decidir o nome ainda)" é um projeto desenvolvido pelos alunos: João Lucas de Campos Gonçalves, José Arthur Armelin de Paula, Letícia Caristo dos Santos e Luiz Gustavo Rodrigues Gaspar, para a matéria de IoT do terceiro semestre do ano de 2026 do curso de Desenvolvimento de Sistemas do SENAI de Itu - Ítalo Bologna.
 
 ## Objetivo do Projeto

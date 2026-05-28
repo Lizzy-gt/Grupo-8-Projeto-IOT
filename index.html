@@ -3,48 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard IoT — Hello MQTT</title>
-    <link rel="stylesheet" href="src/styles/style.css">
-
-    <!--
-        MQTT.js — biblioteca que permite usar MQTT no navegador.
-        O browser não consegue TCP puro, então ela usa WebSocket.
-        Carregada via CDN — requer internet para funcionar.
-        Para uso offline: baixe o arquivo e referencie localmente.
-    -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
+    <title>Cozinha Central | Painel IoT</title>
+    <link rel="stylesheet" href="./src/styles/style.css">
 </head>
 <body>
+    <div class="app-shell">
+        <header class="page-header">
+            <div>
+                <p class="status-chip">Cozinha Central</p>
+                <h1>Escudo Ativo</h1>
+                <p class="subtitle">Proteção total em vigor. Todos os perímetros estão seguros e o monitoramento por IA está operando com latência zero.</p>
+            </div>
+            <button class="profile-button" aria-label="Perfil do usuário">PS</button>
+        </header>
 
-    <header>
-        <p class="badge">SENAI Ítalo Bologna</p>
-        <h1>Dashboard IoT</h1>
-        <p class="subtitulo">Exemplo base — Hello MQTT</p>
-    </header>
+        <main>
+            <section class="page page-inicio active" data-page="inicio">
+                <div class="grid-2">
+                    <article class="card hero-card">
+                        <div class="card-head">
+                            <div>
+                                <span class="small-label">Sistema Operacional</span>
+                                <h2>Escudo Ativo</h2>
+                            </div>
+                            <span class="status-badge status-badge--success">Online</span>
+                        </div>
 
-    <main>
+                        <div class="hero-meter">
+                            <span>12/12</span>
+                            <small>Sensores Ativos</small>
+                        </div>
+                        <div class="progress-row">
+                            <span>Online</span>
+                            <span class="progress-pill">Conectado</span>
+                        </div>
+                        <div class="hero-info">
+                            <div>
+                                <span>Atividade Recente</span>
+                                <strong>Nenhuma</strong>
+                                <p>Ambiente Estéril</p>
+                            </div>
+                            <div>
+                                <span>Nível de Bateria</span>
+                                <strong>85%</strong>
+                                <div class="progress-bar">
+                                    <span style="width:85%"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
 
-        <!-- Indicador de status da conexão com o broker -->
-        <div class="status-bar">
-            <span class="status-dot" id="status-dot"></span>
-            <span id="status-texto">Desconectado</span>
-        </div>
+                    <article class="card compact-card">
+                        <div class="card-head">
+                            <span class="small-label">Monitoramento de Segurança</span>
+                            <span>Estável</span>
+                        </div>
+                        <div class="stat-block">
+                            <div>
+                                <span>Integridade do Sistema</span>
+                                <strong>98.4%</strong>
+                            </div>
+                            <div>
+                                <span>Ameaças Bloqueadas</span>
+                                <strong>12 hoje</strong>
+                            </div>
+                            <div>
+                                <span>Último Check</span>
+                                <strong>Há 2 min</strong>
+                            </div>
+                            <div>
+                                <span>CPU Usage</span>
+                                <strong>12%</strong>
+                            </div>
+                        </div>
+                    </article>
+                </div>
 
-        <!-- Área principal: exibe a última mensagem recebida -->
-        <div class="card">
-            <p class="card-label">Última mensagem recebida</p>
-            <p class="card-valor" id="ultima-mensagem">Aguardando...</p>
-            <p class="card-horario" id="horario"></p>
-        </div>
+                <div class="card alert-card">
+                    <div class="card-head">
+                        <div>
+                            <span class="small-label">Alertas Recentes</span>
+                            <h2>Nenhum alerta pendente</h2>
+                        </div>
+                        <button class="text-button">Ver Histórico</button>
+                    </div>
+                    <p>O perímetro está operando conforme os protocolos de segurança industrial.</p>
+                </div>
+            </section>
 
-        <!-- Log: histórico de todas as mensagens recebidas -->
-        <div class="log-box">
-            <p class="log-titulo">Histórico de mensagens</p>
-            <pre id="log">Aguardando conexão...\n</pre>
-        </div>
+            <section class="page page-controles" data-page="controles">
+                <div class="card hero-card hero-card--controls">
+                    <div class="card-head">
+                        <div>
+                            <span class="small-label">Painel de Atuadores</span>
+                            <h2>Gerenciamento manual dos sistemas de defesa biológica</h2>
+                        </div>
+                        <button id="toggle-system" class="primary-button">Ativar todo o sistema</button>
+                    </div>
+                    <p class="hero-copy">Controle os principais atuadores e acompanhe o status de cada subsistema de proteção industrial.</p>
+                </div>
 
-    </main>
+                <div class="grid-2">
+                    <article class="card split-card">
+                        <div class="split-card-head">
+                            <div>
+                                <span class="small-label">Emissor de Odor</span>
+                                <h3>(Veneno)</h3>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="odor-toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="split-card-body">
+                            <div class="stat-chip-group">
+                                <span class="stat-chip">Status: Ativo</span>
+                                <span class="stat-chip">Concentração: 15%</span>
+                            </div>
+                            <div class="stat-chip-group">
+                                <span class="stat-chip">Fluxo 0.5 ml/min</span>
+                                <span class="stat-chip">Refil 82%</span>
+                            </div>
+                            <div class="image-placeholder">Imagem do sistema</div>
+                        </div>
+                    </article>
 
-    <script src="src/scripts/script.js"></script>
+                    <article class="card split-card">
+                        <div class="split-card-head">
+                            <div>
+                                <span class="small-label">Armadilhas de Captura</span>
+                                <h3>Rede automatizada</h3>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="trap-toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="split-card-body">
+                            <p>Rede de armadilhas mecânicas automatizadas com sensores de pressão e calor.</p>
+                            <div class="occupancy-row">
+                                <strong>2 / 24</strong>
+                                <button class="secondary-button">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <article class="card compact-card">
+                    <div class="card-head">
+                        <span class="small-label">Monitoramento de Segurança</span>
+                        <span>24h</span>
+                    </div>
+                    <div class="stat-block">
+                        <div>
+                            <span>Integridade do Sistema</span>
+                            <strong>98.4%</strong>
+                        </div>
+                        <div>
+                            <span>Ameaças Bloqueadas</span>
+                            <strong>12 hoje</strong>
+                        </div>
+                        <div>
+                            <span>Última Varredura</span>
+                            <strong>Há 2 min</strong>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card log-card">
+                    <div class="card-head">
+                        <span class="small-label">Log Industrial de Atuação</span>
+                        <button class="text-button">Ver histórico</button>
+                    </div>
+                    <div class="event-list">
+                        <div class="event-item">
+                            <div>
+                                <h4>Emissor de Odor</h4>
+                                <p>(Veneno) ativado no Setor B7</p>
+                            </div>
+                            <span>14:32:01</span>
+                        </div>
+                        <div class="event-item">
+                            <div>
+                                <h4>Armadilha #042</h4>
+                                <p>capturou espécime. Notificação enviada.</p>
+                            </div>
+                            <span>14:15:44</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="page page-relatorios" data-page="relatorios">
+                <article class="card report-card">
+                    <div class="card-head">
+                        <div>
+                            <span class="small-label">Relatórios e Histórico</span>
+                            <h2>Monitoramento de higiene e integridade do ambiente.</h2>
+                        </div>
+                        <span class="status-badge status-badge--success">Status: Seguro</span>
+                    </div>
+
+                    <div class="filters-row">
+                        <div class="filter-item">
+                            <label>Período</label>
+                            <select>
+                                <option>Últimos 7 dias</option>
+                                <option>Últimos 30 dias</option>
+                                <option>Últimos 90 dias</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Tipo de Sensor</label>
+                            <select>
+                                <option>Todos os Sensores</option>
+                                <option>Rodadores</option>
+                                <option>Insetos</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Filtrar Praga</label>
+                            <div class="filter-tags">
+                                <button class="tag active">Todos</button>
+                                <button class="tag">Roedores</button>
+                                <button class="tag">Insetos</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="primary-button">Aplicar filtros</button>
+                </article>
+
+                <article class="card heatmap-card">
+                    <div class="card-head">
+                        <div>
+                            <span class="small-label">Atividade de Pragas</span>
+                            <h2>(7 dias)</h2>
+                        </div>
+                    </div>
+                    <div class="heatmap-grid">
+                        <div><span>Seg</span><strong>12</strong></div>
+                        <div><span>Ter</span><strong>08</strong></div>
+                        <div><span>Qua</span><strong>15</strong></div>
+                        <div><span>Qui</span><strong>20</strong></div>
+                        <div><span>Sex</span><strong>14</strong></div>
+                        <div><span>Sáb</span><strong>07</strong></div>
+                        <div><span>Dom</span><strong>05</strong></div>
+                    </div>
+                </article>
+
+                <div class="grid-2">
+                    <article class="card stat-card">
+                        <div class="card-head">
+                            <span class="small-label">Eficácia de Afugentamento</span>
+                            <span class="trend">+3%</span>
+                        </div>
+                        <div class="stat-big">94.2%</div>
+                        <p>Aumento de 3% após calibração do Setor A.</p>
+                    </article>
+                    <article class="card stat-card stat-card--alerts">
+                        <div class="card-head">
+                            <span class="small-label">Alertas Ativos</span>
+                            <span>24h</span>
+                        </div>
+                        <div class="stat-big">0</div>
+                        <p>Nenhum evento crítico detectado nas últimas 24h.</p>
+                    </article>
+                </div>
+
+                <article class="card history-card">
+                    <div class="card-head">
+                        <span class="small-label">Histórico de Eventos</span>
+                        <button class="text-button">Ver histórico completo</button>
+                    </div>
+                    <div class="event-list">
+                        <div class="event-item">
+                            <div>
+                                <h4>Detecção no Setor A</h4>
+                                <p>(Afugentado) Dispositivo ultrassônico ativado por 15s.</p>
+                            </div>
+                            <span>14:20</span>
+                        </div>
+                        <div class="event-item">
+                            <div>
+                                <h4>Captura no Setor C</h4>
+                                <p>Aguardando remoção. Armadilha mecânica disparada.</p>
+                            </div>
+                            <span>Ontem</span>
+                        </div>
+                        <div class="event-item">
+                            <div>
+                                <h4>Calibração Automática</h4>
+                                <p>Otimização de frequência no Setor B concluída.</p>
+                            </div>
+                            <span>22/10</span>
+                        </div>
+                        <div class="event-item">
+                            <div>
+                                <h4>Detecção no Setor A</h4>
+                                <p>Movimento detectado às 03:45 AM.</p>
+                            </div>
+                            <span>21/10</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <nav class="bottom-nav" aria-label="Navegação principal">
+            <button class="nav-button active" data-target="inicio">
+                <span class="nav-icon">🏠</span>
+                <span>Início</span>
+            </button>
+            <button class="nav-button" data-target="controles">
+                <span class="nav-icon">⚙️</span>
+                <span>Controles</span>
+            </button>
+            <button class="nav-button" data-target="relatorios">
+                <span class="nav-icon">📊</span>
+                <span>Relatórios</span>
+            </button>
+        </nav>
+    </div>
+    <script src="./src/scripts/script.js"></script>
 </body>
 </html>

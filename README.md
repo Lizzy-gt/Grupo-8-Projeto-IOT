@@ -7,11 +7,7 @@ Este projeto está sendo desenvolvido para automatizar o controle, monitoramento
 ## Tecnologias Utilizadas
 Utilizamos HTML, CSS e Javascript para o desenvolvimento do Dashboard. Para a construção do projeto físico, utilizaremos uma protoboard, um Raspberry Pi Pico 2w, fios jumper, resistores, um relé, LEDs, sensor PIR, sensor ultrassônico e um servo motor.
 
-<<<<<<< HEAD
-## Como usar
-=======
 ## Como usar o projeto
->>>>>>> e0026d67710c778ea554accad628e7cc26e7db27
 O protótipo deve ser instalado abaixo de bancadas e armários que manterão produtos alimentícios da produção, posicionados estratégicamente para que sua detecção funcione de forma correta e ideal. 
 Para seu funcionamento operacional, um profissional deverá programá-lo com os comandos necessários para a conexão com o Dashboard de monitoramento, de acordo com as exigências que o ambiente proporcionar.
 O Dashboard terá uma página inicial, contendo... (continuar depois)

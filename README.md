@@ -1,13 +1,38 @@
-# Grupo-8-Projeto-IOT
-O projeto "(Vamos decidir o nome ainda)" é um projeto desenvolvido pelos alunos: João Lucas de Campos Gonçalves, José Arthur Armelin de Paula, Letícia Caristo dos Santos e Luiz Gustavo Rodrigues Gaspar, para a matéria de IoT do terceiro semestre do ano de 2026 do curso de Desenvolvimento de Sistemas do SENAI de Itu - Ítalo Bologna.
+# IndusClean IoT
 
-## Objetivo do Projeto
-Este projeto está sendo desenvolvido para automatizar o controle, monitoramento e eliminação de possíveis contaminações ou invasões de pragas dentro de ambientes de produção de alimentos em média e larga escala, como cozinhas industriais ou de grandes restaurantes, prevenindo contaminação, perda da produção e gastos adversos.
+O projeto **IndusClean IoT** está sendo desenvolvido para automatizar o controle, monitoramento e eliminação de possíveis contaminações ou invasões de pragas dentro de ambientes de produção de alimentos em média e larga escala, como cozinhas industriais ou de grandes restaurantes, prevenindo contaminação, perda da produção e gastos adversos.
 
-## Tecnologias Utilizadas
-Utilizamos HTML, CSS e Javascript para o desenvolvimento do Dashboard. Para a construção do projeto físico, utilizaremos uma protoboard, um Raspberry Pi Pico 2w, fios jumper, resistores, um relé, LEDs, sensor PIR, sensor ultrassônico e um servo motor.
+Este projeto foi desenvolvido como atividade avaliativa para a matéria de IoT do 3º semestre (2026) do curso de Desenvolvimento de Sistemas do **SENAI de Itu - Ítalo Bologna**.
 
-## Como usar o projeto
+## Desenvolvedores
+* João Lucas de Campos Gonçalves
+* José Arthur Armelin de Paula
+* Letícia Caristo dos Santos
+* Luiz Gustavo Rodrigues Gaspar
+
+---
+
+## Tecnologias e componentes utilizados
+### Software & Dashboard
+* **Frontend:** HTML5, CSS3, JavaScript
+
+### Hardware & Protótipo
+* Raspberry Pi Pico 2W
+* Sensor PIR (Presença)
+* Sensor Ultrassônico (Distância)
+* Servo Motor
+* Módulo Relé
+* LEDs e Resistores
+* Protoboard e Fios Jumper
+
+---
+
+## Como o projeto deve funcionar e Instalação
+### Posicionamento
 O protótipo deve ser instalado abaixo de bancadas e armários que manterão produtos alimentícios da produção, posicionados estratégicamente para que sua detecção funcione de forma correta e ideal. 
-Para seu funcionamento operacional, um profissional deverá programá-lo com os comandos necessários para a conexão com o Dashboard de monitoramento, de acordo com as exigências que o ambiente proporcionar.
-O Dashboard terá uma página inicial, contendo... (continuar depois)
+
+### Dashboard de Monitoramento
+O sistema da **IndusClean IoT** apresenta uma interface dividida em três áreas principais:
+1. **Início:** Uma página inicial contendo o status do escudo (atividades recentes e nível de bateria) além de informações gerais do monitoramento de segurança e alertas.
+2. **Controles:** Aqui, você poderá encontrar um painel de controle dos atuadores(emissor de odor e armadilhas) juntamente com seus status.
+3. **Relatórios:** Aqui fica todo o histórico integral do sistema de segurança, organizado por filtradores de pesquisa, apresentação das eficácias e alertas gerais que ocorreram nas ultimas 24 horas.

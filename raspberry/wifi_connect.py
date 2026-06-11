@@ -39,3 +39,4 @@ def conectar_wifi(ssid, senha, timeout=15):
     else:
         print("[WiFi] ERRO: não conectou. Verifique SSID e senha.")
         return False
+        

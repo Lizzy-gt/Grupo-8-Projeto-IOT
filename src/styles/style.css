@@ -94,6 +94,65 @@ button {
     color: var(--text);
     font-weight: 700;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.profile-button:hover {
+    background: linear-gradient(135deg, rgba(56,212,164,0.3), rgba(115,226,255,0.3));
+    box-shadow: inset 0 0 0 1px rgba(56,212,164,0.3);
+}
+
+.profile-menu-container {
+    position: relative;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.3s ease;
+    z-index: 30;
+}
+
+.profile-menu-container.active .profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile-option {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-option:hover {
+    background: rgba(56, 212, 164, 0.1);
+    color: var(--accent);
+}
+
+.profile-option--logout:hover {
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
 }
 
 main {
